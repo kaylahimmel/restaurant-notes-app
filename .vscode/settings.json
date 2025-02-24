@@ -1,0 +1,16 @@
+{
+  "editor.formatOnSave": false,
+  "files.autoSave": "afterDelay",
+  "files.trimTrailingWhitespace": false,
+  "workbench.externalBrowser": "chrome",
+  "workbench.reduceMotion": "on",
+  "workbench.colorCustomizations": {
+
+  },
+  "workbench.editor.limit.value": 8,
+  "screencastMode.mouseIndicatorSize": 24,
+  "eslint.format.enable": true,
+  "eslint.lintTask.enable": true,
+  "terminal.integrated.bellDuration": 1000,
+  "terminal.integrated.fontSize": 13
+}
