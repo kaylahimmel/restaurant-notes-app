@@ -41,7 +41,9 @@ describe('Link component', () => {
   });
 
   it('renders with target="_blank"', () => {
-    render(<Link label="External Link" href="https://example.com" target="_blank" />);
+    render(
+      <Link label="External Link" href="https://example.com" target="_blank" />
+    );
 
     const linkElement = screen.getByRole('link', { name: 'External Link' });
     expect(linkElement).toHaveAttribute('target', '_blank');
@@ -55,21 +57,31 @@ describe('Link component', () => {
   });
 
   it('renders with rel attribute', () => {
-    render(<Link label="External" href="https://example.com" rel="noopener noreferrer" />);
+    render(
+      <Link
+        label="External"
+        href="https://example.com"
+        rel="noopener noreferrer"
+      />
+    );
 
     const linkElement = screen.getByRole('link', { name: 'External' });
     expect(linkElement).toHaveAttribute('rel', 'noopener noreferrer');
   });
 
   it('renders with custom className', () => {
-    render(<Link label="Styled Link" href="/styled" className="custom-link-class" />);
+    render(
+      <Link label="Styled Link" href="/styled" className="custom-link-class" />
+    );
 
     const linkElement = screen.getByRole('link', { name: 'Styled Link' });
     expect(linkElement).toHaveClass('custom-link-class');
   });
 
   it('renders with data-testid', () => {
-    render(<Link label="Test Link" href="/test" data-testid="custom-link-test" />);
+    render(
+      <Link label="Test Link" href="/test" data-testid="custom-link-test" />
+    );
 
     const linkElement = screen.getByTestId('custom-link-test');
     expect(linkElement).toBeInTheDocument();
@@ -109,7 +121,10 @@ describe('Link component', () => {
     expect(screen.getByRole('link')).toHaveAttribute('href', '/page2');
 
     rerender(<Link label="External" href="https://google.com" />);
-    expect(screen.getByRole('link')).toHaveAttribute('href', 'https://google.com');
+    expect(screen.getByRole('link')).toHaveAttribute(
+      'href',
+      'https://google.com'
+    );
   });
 
   it('renders as an anchor element', () => {

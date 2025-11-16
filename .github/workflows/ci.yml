@@ -1,0 +1,42 @@
+name: CI
+
+on:
+  pull_request:
+    branches: [ main ]
+  push:
+    branches: [ main ]
+
+jobs:
+  test-and-lint:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      with:
+        fetch-depth: 0
+
+    - name: Check if branch is up to date with main
+      run: |
+        git fetch origin main
+        MERGE_BASE=$(git merge-base HEAD origin/main)
+        MAIN_HEAD=$(git rev-parse origin/main)
+        if [ "$MERGE_BASE" != "$MAIN_HEAD" ]; then
+          echo "Error: Branch is not up to date with main. Please rebase or merge main into your branch."
+          exit 1
+        fi
+
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '22'
+        cache: 'npm'
+    
+    - name: Install dependencies
+      run: npm ci
+    
+    - name: Run linter
+      run: npm run lint
+    
+    - name: Run tests
+      run: npm test

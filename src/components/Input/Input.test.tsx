@@ -67,7 +67,9 @@ describe('Input component', () => {
 
   it('renders with type "password"', () => {
     const mockChange = jest.fn();
-    render(<Input label="Password" value="" type="password" onChange={mockChange} />);
+    render(
+      <Input label="Password" value="" type="password" onChange={mockChange} />
+    );
 
     const inputElement = screen.getByLabelText('Password');
     expect(inputElement).toHaveAttribute('type', 'password');
@@ -75,7 +77,9 @@ describe('Input component', () => {
 
   it('renders with type "number"', () => {
     const mockChange = jest.fn();
-    render(<Input label="Age" value="25" type="number" onChange={mockChange} />);
+    render(
+      <Input label="Age" value="25" type="number" onChange={mockChange} />
+    );
 
     const inputElement = screen.getByLabelText('Age');
     expect(inputElement).toHaveAttribute('type', 'number');
@@ -83,7 +87,14 @@ describe('Input component', () => {
 
   it('renders with placeholder text', () => {
     const mockChange = jest.fn();
-    render(<Input label="Search" value="" placeholder="Enter search term..." onChange={mockChange} />);
+    render(
+      <Input
+        label="Search"
+        value=""
+        placeholder="Enter search term..."
+        onChange={mockChange}
+      />
+    );
 
     const inputElement = screen.getByPlaceholderText('Enter search term...');
     expect(inputElement).toBeInTheDocument();
@@ -91,7 +102,14 @@ describe('Input component', () => {
 
   it('renders as disabled when disabled prop is true', () => {
     const mockChange = jest.fn();
-    render(<Input label="Disabled Field" value="cannot edit" disabled onChange={mockChange} />);
+    render(
+      <Input
+        label="Disabled Field"
+        value="cannot edit"
+        disabled
+        onChange={mockChange}
+      />
+    );
 
     const inputElement = screen.getByLabelText('Disabled Field');
     expect(inputElement).toBeDisabled();
@@ -107,7 +125,9 @@ describe('Input component', () => {
 
   it('renders with required attribute and asterisk', () => {
     const mockChange = jest.fn();
-    render(<Input label="Required Field" value="" required onChange={mockChange} />);
+    render(
+      <Input label="Required Field" value="" required onChange={mockChange} />
+    );
 
     const inputElement = screen.getByLabelText('Required Field *');
     expect(inputElement).toBeRequired();
@@ -124,7 +144,9 @@ describe('Input component', () => {
 
   it('renders with name attribute', () => {
     const mockChange = jest.fn();
-    render(<Input label="Username" value="" name="username" onChange={mockChange} />);
+    render(
+      <Input label="Username" value="" name="username" onChange={mockChange} />
+    );
 
     const inputElement = screen.getByLabelText('Username');
     expect(inputElement).toHaveAttribute('name', 'username');
@@ -132,7 +154,9 @@ describe('Input component', () => {
 
   it('renders with id attribute', () => {
     const mockChange = jest.fn();
-    render(<Input label="Email" value="" id="email-input" onChange={mockChange} />);
+    render(
+      <Input label="Email" value="" id="email-input" onChange={mockChange} />
+    );
 
     const inputElement = screen.getByLabelText('Email');
     expect(inputElement).toHaveAttribute('id', 'email-input');
@@ -140,7 +164,9 @@ describe('Input component', () => {
 
   it('uses name as id when id is not provided', () => {
     const mockChange = jest.fn();
-    render(<Input label="Username" value="" name="username" onChange={mockChange} />);
+    render(
+      <Input label="Username" value="" name="username" onChange={mockChange} />
+    );
 
     const inputElement = screen.getByLabelText('Username');
     expect(inputElement).toHaveAttribute('id', 'username');
@@ -156,7 +182,9 @@ describe('Input component', () => {
 
   it('label htmlFor matches input id', () => {
     const mockChange = jest.fn();
-    render(<Input label="Test Field" value="" id="test-id" onChange={mockChange} />);
+    render(
+      <Input label="Test Field" value="" id="test-id" onChange={mockChange} />
+    );
 
     const labelElement = screen.getByText('Test Field');
     expect(labelElement).toHaveAttribute('for', 'test-id');
@@ -164,7 +192,14 @@ describe('Input component', () => {
 
   it('renders with custom className on wrapper div', () => {
     const mockChange = jest.fn();
-    render(<Input label="Styled Input" value="" className="custom-input-wrapper" onChange={mockChange} />);
+    render(
+      <Input
+        label="Styled Input"
+        value=""
+        className="custom-input-wrapper"
+        onChange={mockChange}
+      />
+    );
 
     const wrapperDiv = screen.getByText('Styled Input').parentElement;
     expect(wrapperDiv).toHaveClass('custom-input-wrapper');
@@ -172,7 +207,14 @@ describe('Input component', () => {
 
   it('renders with data-testid', () => {
     const mockChange = jest.fn();
-    render(<Input label="Test Input" value="" data-testid="custom-input-test" onChange={mockChange} />);
+    render(
+      <Input
+        label="Test Input"
+        value=""
+        data-testid="custom-input-test"
+        onChange={mockChange}
+      />
+    );
 
     const inputElement = screen.getByTestId('custom-input-test');
     expect(inputElement).toBeInTheDocument();
@@ -211,16 +253,22 @@ describe('Input component', () => {
 
   it('updates value correctly', () => {
     const mockChange = jest.fn();
-    const { rerender } = render(<Input label="Dynamic Value" value="initial" onChange={mockChange} />);
+    const { rerender } = render(
+      <Input label="Dynamic Value" value="initial" onChange={mockChange} />
+    );
     expect(screen.getByDisplayValue('initial')).toBeInTheDocument();
 
-    rerender(<Input label="Dynamic Value" value="updated" onChange={mockChange} />);
+    rerender(
+      <Input label="Dynamic Value" value="updated" onChange={mockChange} />
+    );
     expect(screen.getByDisplayValue('updated')).toBeInTheDocument();
   });
 
   it('renders different input types correctly', () => {
     const mockChange = jest.fn();
-    const { rerender } = render(<Input label="Test" value="" type="text" onChange={mockChange} />);
+    const { rerender } = render(
+      <Input label="Test" value="" type="text" onChange={mockChange} />
+    );
     expect(screen.getByLabelText('Test')).toHaveAttribute('type', 'text');
 
     rerender(<Input label="Test" value="" type="tel" onChange={mockChange} />);
@@ -229,7 +277,9 @@ describe('Input component', () => {
     rerender(<Input label="Test" value="" type="url" onChange={mockChange} />);
     expect(screen.getByLabelText('Test')).toHaveAttribute('type', 'url');
 
-    rerender(<Input label="Test" value="" type="search" onChange={mockChange} />);
+    rerender(
+      <Input label="Test" value="" type="search" onChange={mockChange} />
+    );
     expect(screen.getByLabelText('Test')).toHaveAttribute('type', 'search');
   });
 
