@@ -7,11 +7,11 @@
 - [ ] Install necessary dependencies:
   - [x] Next.js
   - [x] TypeScript
-  - [x] Jest
-  - [ ] React Testing Library
-  - [ ] Cypress
+  - [ ] Sentry (for crash errors)
+  - [x] Jest/React Testing Library or Maestro
+  - [ ] Cypress or Detox
   - [x] MaterialUI
-  - [ ] Supabase
+  - [ ] Supabase or AWS
 - [ ] Work through the Getting Started documentation from NextJS (start at [Nesting Layouts](src/app/review/page.tsx))
 
 ## UI Development
@@ -29,13 +29,13 @@
 ## User Authentication
 
 - [ ] Design and implement login and registration forms
-- [ ] Set up authentication flow (login, logout, registration) using Supabase Auth
+- [ ] Set up authentication flow (login, logout, registration) using Supabase Auth or AWS Cognito
 - [ ] Protect routes and components based on authentication status
 
 ## API Integration
 
 - [ ] Integrate Google Maps API for displaying locations
-- [ ] Fetch and display restaurant lists from Yelp Fusion API or Google Places API
+- [ ] Fetch and display restaurant lists from Google Places API
 - [ ] Handle API errors and loading states
 
 ## Database Integration
@@ -46,9 +46,9 @@
 
 ## Testing
 
-- [ ] Write unit tests for components using Jest and React Testing Library
+- [ ] Write unit tests for components using Jest and React Testing Library or Maestro
 - [ ] Implement integration tests for API calls using MSW (Mock Service Worker)
-- [ ] Write end-to-end tests using Cypress
+- [ ] Write end-to-end tests using Cypress or Detox
 - [ ] Ensure 100% test coverage for critical components
 
 ## Final Touches
@@ -60,5 +60,5 @@
 ## Deployment
 
 - [ ] Set up CI/CD pipeline using GitHub Actions
-- [ ] Deploy application to production environment using GitHub Pages or Vercel
+- [ ] Deploy application to production environment using GitHub Pages or Vercel or AWS
 - [ ] Monitor and maintain the application post-deployment
