@@ -13,7 +13,9 @@ jobs:
     steps:
     - name: Checkout code
       uses: actions/checkout@v4
-      
+      with:
+        fetch-depth: 0
+
     - name: Check if branch is up to date with main
       run: |
         git fetch origin main
