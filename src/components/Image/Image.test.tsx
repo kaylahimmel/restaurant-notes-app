@@ -69,12 +69,7 @@ describe('Image component', () => {
 
   it('uses src when overrideSrc is not provided', () => {
     const { getByAltText } = render(
-      <Image
-        src="/default.jpg"
-        alt="default image"
-        width={200}
-        height={200}
-      />
+      <Image src="/default.jpg" alt="default image" width={200} height={200} />
     );
 
     const imgElement = getByAltText('default image');
@@ -84,12 +79,7 @@ describe('Image component', () => {
 
   it('renders with specified dimensions', () => {
     const { getByAltText } = render(
-      <Image
-        src="/test.jpg"
-        alt="test image"
-        width={300}
-        height={300}
-      />
+      <Image src="/test.jpg" alt="test image" width={300} height={300} />
     );
 
     const imgElement = getByAltText('test image');
@@ -112,12 +102,7 @@ describe('Image component', () => {
 
   it('handles empty string alt text', () => {
     const { container } = render(
-      <Image
-        src="/test.jpg"
-        alt=""
-        width={100}
-        height={100}
-      />
+      <Image src="/test.jpg" alt="" width={100} height={100} />
     );
 
     // Next.js Image with empty alt gets role="presentation", so query by tag

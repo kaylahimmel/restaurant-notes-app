@@ -4,13 +4,20 @@ import '@testing-library/jest-dom';
 
 // Mock the Image component BEFORE importing Review
 jest.mock('../Image/Image', () => ({
-  Image: ({ src, alt, width, height }: any) => (
+  Image: ({ src, alt, width, height }: ImageProps) => (
     // eslint-disable-next-line @next/next/no-img-element
-    <img src={src} alt={alt} width={width} height={height} data-testid="mocked-image" />
+    <img
+      src={src}
+      alt={alt}
+      width={width}
+      height={height}
+      data-testid="mocked-image"
+    />
   ),
 }));
 
 import { Review, ReviewProps } from './Review';
+import { ImageProps } from '../Image/Image';
 
 describe('Review component', () => {
   const baseProps: ReviewProps = {
@@ -29,13 +36,19 @@ describe('Review component', () => {
     expect(screen.getByText('2024-01-15')).toBeInTheDocument();
     expect(screen.getByText('5')).toBeInTheDocument();
     expect(screen.getByText('Chicken Parmesan')).toBeInTheDocument();
-    expect(screen.getByText('Absolutely delicious! The chicken was perfectly crispy.')).toBeInTheDocument();
+    expect(
+      screen.getByText(
+        'Absolutely delicious! The chicken was perfectly crispy.'
+      )
+    ).toBeInTheDocument();
   });
 
   it('renders with only required id prop', () => {
     render(<Review id="review-minimal" />);
 
-    const reviewElement = screen.getByText('', { selector: '[id="review-minimal"]' });
+    const reviewElement = screen.getByText('', {
+      selector: '[id="review-minimal"]',
+    });
     expect(reviewElement).toBeInTheDocument();
   });
 
@@ -75,7 +88,11 @@ describe('Review component', () => {
 
     render(<Review {...propsWithoutNotes} />);
 
-    expect(screen.queryByText('Absolutely delicious! The chicken was perfectly crispy.')).not.toBeInTheDocument();
+    expect(
+      screen.queryByText(
+        'Absolutely delicious! The chicken was perfectly crispy.'
+      )
+    ).not.toBeInTheDocument();
   });
 
   it('renders with photos', () => {
@@ -145,7 +162,9 @@ describe('Review component', () => {
     expect(h2).toHaveTextContent('2024-01-15');
     expect(h3).toHaveTextContent('5');
     expect(paragraphs[0]).toHaveTextContent('Chicken Parmesan');
-    expect(paragraphs[1]).toHaveTextContent('Absolutely delicious! The chicken was perfectly crispy.');
+    expect(paragraphs[1]).toHaveTextContent(
+      'Absolutely delicious! The chicken was perfectly crispy.'
+    );
   });
 
   it('renders single photo correctly', () => {
