@@ -1,4 +1,4 @@
-import styles from './search.module.css'
+import styles from './search.module.scss';
 
 export default function Home() {
   return (
@@ -11,5 +11,5 @@ export default function Home() {
         />
       </main>
     </div>
-  )
+  );
 }

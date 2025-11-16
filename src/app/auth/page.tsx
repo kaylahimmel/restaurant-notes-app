@@ -1,6 +1,6 @@
-import styles from './auth.module.css'
+import styles from './auth.module.scss';
 
-export default function Home() {
+export default function Page() {
   return (
     <div className={styles.page}>
       <main className={styles.main}>
@@ -11,5 +11,5 @@ export default function Home() {
         />
       </main>
     </div>
-  )
+  );
 }
