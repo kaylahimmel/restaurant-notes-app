@@ -1,4 +1,4 @@
-import { NextConfig } from 'next'
+import { NextConfig } from 'next';
 
 const config: NextConfig = {
   images: {
@@ -11,6 +11,6 @@ const config: NextConfig = {
       },
     ],
   },
-}
+};
 
-export default config
+export default config;

@@ -1,4 +1,4 @@
-import styles from './review.module.css'
+import styles from './review.module.scss';
 
 export default function Home() {
   return (
@@ -11,5 +11,5 @@ export default function Home() {
         />
       </main>
     </div>
-  )
+  );
 }

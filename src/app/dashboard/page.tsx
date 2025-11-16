@@ -1,4 +1,4 @@
-import styles from './dashboard.module.css'
+import styles from './dashboard.module.scss';
 
 export default function Home() {
   return (
@@ -11,5 +11,5 @@ export default function Home() {
         />
       </main>
     </div>
-  )
+  );
 }
