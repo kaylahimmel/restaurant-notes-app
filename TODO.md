@@ -4,21 +4,22 @@
 
 - [X] Initialize Next.js project with TypeScript
 - [X] Set up project structure and folders
-- [ ] Install necessary dependencies:
+- [x] Install necessary dependencies:
   - [x] Next.js
   - [x] TypeScript
   - [ ] Sentry (for crash errors)
   - [x] Jest/React Testing Library or Maestro
   - [ ] Cypress or Detox
   - [x] MaterialUI
-  - [ ] Supabase or AWS
-- [ ] Work through the Getting Started documentation from NextJS (start at [Nesting Layouts](src/app/review/page.tsx))
+  - [x] Supabase or AWS
+- [x] Configure linting (ESLint + Prettier)
 
 ## UI Development
 
 - [ ] Design and implement responsive layout using MaterialUI
-- [ ] Create reusable components (Header, Footer, Sidebar, etc.)
-- [ ] Implement navigation using Next.js file-based routing
+- [x] Create reusable components (Button, Link, Input, Profile, Review, Image)
+- [x] Implement navigation using Next.js file-based routing
+- [x] Add navigation to home page
 
 ## State Management
 
@@ -46,7 +47,8 @@
 
 ## Testing
 
-- [ ] Write unit tests for components using Jest and React Testing Library or Maestro
+- [x] Set up Jest and React Testing Library
+- [x] Write unit tests for components (Button, Link, Input, Profile, Review, Image)
 - [ ] Implement integration tests for API calls using MSW (Mock Service Worker)
 - [ ] Write end-to-end tests using Cypress or Detox
 - [ ] Ensure 100% test coverage for critical components
@@ -59,6 +61,6 @@
 
 ## Deployment
 
-- [ ] Set up CI/CD pipeline using GitHub Actions
+- [x] Set up CI/CD pipeline using GitHub Actions
 - [ ] Deploy application to production environment using GitHub Pages or Vercel or AWS
 - [ ] Monitor and maintain the application post-deployment
