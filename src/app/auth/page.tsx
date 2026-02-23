@@ -5,7 +5,11 @@ import { useRouter } from 'next/navigation';
 import styles from './auth.module.scss';
 import { Input } from '@/components/Input/Input';
 import { Button } from '@/components/Button/Button';
-import { createClient } from '@/lib/supabase/client';
+import {
+  signInWithEmailAndPassword,
+  createUserWithEmailAndPassword,
+} from 'firebase/auth';
+import { auth } from '@/lib/firebase/client';
 
 export default function Page() {
   const [isLogin, setIsLogin] = useState(true);
@@ -15,7 +19,6 @@ export default function Page() {
   const [error, setError] = useState<string | null>(null);
   const [message, setMessage] = useState<string | null>(null);
   const router = useRouter();
-  const supabase = createClient();
 
   const handleSubmit = async () => {
     setLoading(true);
@@ -24,38 +27,44 @@ export default function Page() {
 
     try {
       if (isLogin) {
-        // Sign in with email and password
-        const { error: signInError } = await supabase.auth.signInWithPassword({
+        const userCredential = await signInWithEmailAndPassword(
+          auth,
           email,
-          password,
+          password
+        );
+
+        // Get the ID token to exchange for a session cookie
+        const idToken = await userCredential.user.getIdToken();
+
+        // POST to our API route — this sets the session cookie
+        await fetch('/api/auth/session', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ idToken }),
         });
 
-        if (signInError) {
-          setError(signInError.message);
-          setLoading(false);
-          return;
-        }
-
-        // Login successful - redirect to dashboard
         router.push('/dashboard');
-        router.refresh();
       } else {
-        // Sign up with email and password
-        const { error: signUpError } = await supabase.auth.signUp({
+        const userCredential = await createUserWithEmailAndPassword(
+          auth,
           email,
-          password,
+          password
+        );
+
+        setMessage('Account created! You can now sign in.');
+        // Get the ID token to exchange for a session cookie
+        const idToken = await userCredential.user.getIdToken();
+
+        // POST to our API route — this sets the session cookie
+        await fetch('/api/auth/session', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ idToken }),
         });
 
-        if (signUpError) {
-          setError(signUpError.message);
-          setLoading(false);
-          return;
-        }
-
-        // Sign up successful
-        setMessage('Check your email to confirm your account!');
         setEmail('');
         setPassword('');
+        router.push('/dashboard');
       }
     } catch (err) {
       setError(err instanceof Error ? err.message : 'An error occurred');
