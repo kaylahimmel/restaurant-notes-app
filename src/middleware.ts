@@ -9,7 +9,11 @@ export async function middleware(request: NextRequest) {
   }
 
   // Cookie exists → pass it along in a header so server components can read it
-  return NextResponse.next();
+  if (request.nextUrl.pathname === '/auth') {
+    return NextResponse.redirect(new URL('/dashboard', request.url));
+  } else {
+    return NextResponse.next();
+  }
 }
 
 export const config = {

@@ -2,6 +2,7 @@ import { redirect } from 'next/navigation';
 import { cookies } from 'next/headers';
 import { adminAuth } from '@/lib/firebase/admin';
 import styles from './dashboard.module.scss';
+import { SignOutButton } from './SignOutButton';
 
 export default async function Dashboard() {
   const cookieStore = await cookies();
@@ -29,6 +30,7 @@ export default async function Dashboard() {
           rel="stylesheet"
           href="https://fonts.googleapis.com/icon?family=Material+Icons"
         />
+        <SignOutButton />
       </main>
     </div>
   );
