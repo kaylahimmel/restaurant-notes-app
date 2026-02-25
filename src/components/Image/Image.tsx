@@ -1,5 +1,3 @@
-import NextImage from 'next/image';
-
 export interface ImageProps {
   src: string;
   alt: string;
@@ -18,7 +16,7 @@ export const Image = ({
   'data-testid': testId,
 }: ImageProps) => {
   return (
-    <NextImage
+    <img
       src={overrideSrc || src}
       alt={alt}
       width={width}

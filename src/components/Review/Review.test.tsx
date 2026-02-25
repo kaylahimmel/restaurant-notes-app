@@ -1,23 +1,7 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
-
-// Mock the Image component BEFORE importing Review
-jest.mock('../Image/Image', () => ({
-  Image: ({ src, alt, width, height }: ImageProps) => (
-    // eslint-disable-next-line @next/next/no-img-element
-    <img
-      src={src}
-      alt={alt}
-      width={width}
-      height={height}
-      data-testid="mocked-image"
-    />
-  ),
-}));
-
 import { Review, ReviewProps } from './Review';
-import { ImageProps } from '../Image/Image';
 
 describe('Review component', () => {
   const baseProps: ReviewProps = {

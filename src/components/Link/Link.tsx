@@ -1,5 +1,5 @@
 import React from 'react';
-import NextLink from 'next/link';
+import { Link as TanStackLink } from '@tanstack/react-router';
 
 export interface LinkProps {
   label: string;
@@ -21,8 +21,8 @@ export const Link = ({
   'data-testid': testId,
 }: LinkProps) => {
   return (
-    <NextLink
-      href={href}
+    <TanStackLink
+      to={href}
       onClick={onClick}
       target={target}
       rel={rel}
@@ -30,6 +30,6 @@ export const Link = ({
       data-testid={testId}
     >
       {label}
-    </NextLink>
+    </TanStackLink>
   );
 };

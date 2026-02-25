@@ -1,6 +1,9 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
+
+jest.unmock('@/components/Image/Image');
+
 import { Image } from './Image';
 
 describe('Image component', () => {
