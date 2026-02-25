@@ -1,15 +1,13 @@
-'use client';
-
 import { useState } from 'react';
-import { useRouter } from 'next/navigation';
-import styles from './auth.module.scss';
-import { Input } from '@/components/Input/Input';
-import { Button } from '@/components/Button/Button';
+import { useNavigate } from '@tanstack/react-router';
 import {
   signInWithEmailAndPassword,
   createUserWithEmailAndPassword,
 } from 'firebase/auth';
 import { auth } from '@/lib/firebase/client';
+import { Input } from '@/components/Input/Input';
+import { Button } from '@/components/Button/Button';
+import styles from '@/styles/auth.module.scss';
 
 export default function Page() {
   const [isLogin, setIsLogin] = useState(true);
@@ -18,7 +16,7 @@ export default function Page() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [message, setMessage] = useState<string | null>(null);
-  const router = useRouter();
+  const navigate = useNavigate();
 
   const handleSubmit = async () => {
     setLoading(true);
@@ -33,17 +31,7 @@ export default function Page() {
           password
         );
 
-        // Get the ID token to exchange for a session cookie
-        const idToken = await userCredential.user.getIdToken();
-
-        // POST to our API route — this sets the session cookie
-        await fetch('/api/auth/session', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ idToken }),
-        });
-
-        router.push('/dashboard');
+        navigate({ to: '/dashboard' });
       } else {
         const userCredential = await createUserWithEmailAndPassword(
           auth,
@@ -52,19 +40,17 @@ export default function Page() {
         );
 
         setMessage('Account created! You can now sign in.');
-        // Get the ID token to exchange for a session cookie
-        const idToken = await userCredential.user.getIdToken();
 
         // POST to our API route — this sets the session cookie
         await fetch('/api/auth/session', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ idToken }),
+          body: JSON.stringify({}),
         });
 
         setEmail('');
         setPassword('');
-        router.push('/dashboard');
+        navigate({ to: '/dashboard' });
       }
     } catch (err) {
       setError(err instanceof Error ? err.message : 'An error occurred');

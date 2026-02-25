@@ -1,13 +1,13 @@
-'use client';
-
 import { useEffect, useState } from 'react';
-import { useRouter } from 'next/router';
-import styles from '../restaurant.module.scss';
+import { useNavigate } from '@tanstack/react-router';
 import { Review, ReviewProps } from '@/components/Review/Review';
+import styles from '@styles/restaurant.module.scss';
 
 export default function Restaurant() {
-  const router = useRouter();
-  const { name } = router.query;
+  const navigate = useNavigate();
+  navigate({ to: '/dashboard' });
+
+  const { name } = navigate.call;
 
   const [reviews, setReviews] = useState<ReviewProps[]>([]);
 
