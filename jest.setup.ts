@@ -2,7 +2,15 @@ import '@testing-library/jest-dom';
 
 // Mock TanStack Router so components don't need a full router context in tests
 jest.mock('@tanstack/react-router', () => ({
-  Link: ({ children, to, ...props }: any) => {
+  Link: ({
+    children,
+    to,
+    ...props
+  }: {
+    children: unknown;
+    to: string;
+    [key: string]: unknown;
+  }) => {
     const React = require('react');
     return React.createElement('a', { href: to, ...props }, children);
   },
