@@ -1,5 +1,3 @@
-import styles from '@styles/reviewDetails.module.scss';
-
 export default function Home() {
   return (
     <div>
